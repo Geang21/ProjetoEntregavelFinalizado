@@ -4,32 +4,32 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Curso {
-
-    private String nome;
+    private String nomeCurso;
     private Integer codCurso;
-    private ProfessorTitular novoProfessorTitular;
-    private ProfessorAdjunto novoProfessorAdjunto;
-    private Integer qtdaMaxAluno;
-    private List<Aluno> listaALunoCurso = new ArrayList<>();
+    private ProfessorTitular novoProfTitular;
+    private ProfessorAdjunto novoProfAdjunto;
+    private Integer maxQtdeAlunos;
+    List<Aluno> listaAlunosMatriculados = new ArrayList<>();
 
-    public Curso() {
+    public Curso(){
 
     }
 
-    public Curso(String nome, Integer codCurso, ProfessorTitular novoProfessorTitular, ProfessorAdjunto novoProfessorAdjunto, Integer qtdaMaxAluno) {
-        this.nome = nome;
+    public Curso(String nomeCurso,Integer codCurso,Integer maxQtdeAlunos,ProfessorTitular novoProfTitular,ProfessorAdjunto novoProfAdjunto,List<Aluno> listaAlunosMatriculados){
+        this.nomeCurso = nomeCurso;
         this.codCurso = codCurso;
-        this.novoProfessorTitular = novoProfessorTitular;
-        this.novoProfessorAdjunto = novoProfessorAdjunto;
-        this.qtdaMaxAluno = qtdaMaxAluno;
+        this.maxQtdeAlunos = maxQtdeAlunos;
+        this.novoProfTitular = null;
+        this.novoProfAdjunto = null;
+        this.listaAlunosMatriculados = null;
     }
 
-    public String getNome() {
-        return nome;
+    public String getNomeCurso() {
+        return nomeCurso;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
+    public void setNomeCurso(String nomeCurso) {
+        this.nomeCurso = nomeCurso;
     }
 
     public Integer getCodCurso() {
@@ -40,61 +40,69 @@ public class Curso {
         this.codCurso = codCurso;
     }
 
-    public ProfessorTitular getNovoProfessorTitular() {
-        return novoProfessorTitular;
+    public ProfessorTitular getNovoProfTitular() {
+        return novoProfTitular;
     }
 
-    public void setNovoProfessorTitular(ProfessorTitular novoProfessorTitular) {
-        this.novoProfessorTitular = novoProfessorTitular;
+    public void setNovoProfTitular(ProfessorTitular novoProfTitular) {
+        this.novoProfTitular = novoProfTitular;
     }
 
-    public ProfessorAdjunto getNovoProfessorAdjunto() {
-        return novoProfessorAdjunto;
+    public ProfessorAdjunto getNovoProfAdjunto() {
+        return novoProfAdjunto;
     }
 
-    public void setNovoProfessorAdjunto(ProfessorAdjunto novoProfessorAdjunto) {
-        this.novoProfessorAdjunto = novoProfessorAdjunto;
+    public void setNovoProfAdjunto(ProfessorAdjunto novoProfAdjunto) {
+        this.novoProfAdjunto = novoProfAdjunto;
     }
 
-    public Integer getQtdaMaxAluno() {
-        return qtdaMaxAluno;
+    public Integer getMaxQtdeAlunos() {
+        return maxQtdeAlunos;
     }
 
-    public void setQtdaMaxAluno(Integer qtdaMaxAluno) {
-        this.qtdaMaxAluno = qtdaMaxAluno;
+    public void setMaxQtdeAlunos(Integer maxQtdeAlunos) {
+        this.maxQtdeAlunos = maxQtdeAlunos;
+    }
+
+    public List<Aluno> getListaAlunosMatriculados() {
+        return listaAlunosMatriculados;
+    }
+
+    public void setListaAlunosMatriculados(List<Aluno> listaAlunosMatriculados) {
+        this.listaAlunosMatriculados = listaAlunosMatriculados;
     }
 
     @Override
     public boolean equals(Object novoCurso) {
-        if (!(novoCurso instanceof Curso)) {
+
+        if(!(novoCurso instanceof Curso)){
             return false;
         }
-        if (((Curso) novoCurso).getCodCurso() == this.codCurso) {
+
+        if(((Curso) novoCurso).getCodCurso() == this.codCurso){
             return true;
         }
+
         return false;
+
     }
 
-    public Boolean adicionarUmAluno(Aluno umAluno) {
-        if (listaALunoCurso.size() < this.qtdaMaxAluno) {
-            this.listaALunoCurso.add(umAluno);
-            System.out.println("Aluno Matriculado");
+    public Boolean adicionarUmAluno(Aluno umAluno){
+        if(listaAlunosMatriculados.size() < this.maxQtdeAlunos){
+            listaAlunosMatriculados.add(umAluno);
             return true;
-        } else {
-            System.out.println("Aluno não pode ser matriculado pois não há mais vagas !");
+        }else{
             return false;
         }
     }
 
-    public void excluirAluno(Aluno umAluno) {
-        for (Aluno aluno : listaALunoCurso) {
-            if (aluno.equals(umAluno)) {
-                listaALunoCurso.remove(aluno);
-                System.out.println("Aluno Removido");
-            } else {
-
+    public void excluirAluno(Aluno umAluno){
+        for(Aluno aluno:listaAlunosMatriculados){
+            if(aluno.equals(umAluno)){
+                listaAlunosMatriculados.remove(aluno);
             }
         }
-        System.out.println("Aluno localizado.");
     }
 }
+
+
